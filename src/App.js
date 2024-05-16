@@ -5,10 +5,15 @@ import MusicItem from './components/MusicItem'
 export class App extends Component {
   render() {
     return (
-      <div>
-  <Navbar/>        
+      <>
+  <Navbar/>
+
+<div className='container d-flex'>
+
+  <MusicItem title={"hello"} description={"hii"}/>
   <MusicItem/>
-      </div>
+</div>
+      </>
 )
   }
 }
