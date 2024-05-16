@@ -7,18 +7,14 @@ export default class Music extends Component {
         super();
         this.state = {
             items: [],
-            page: 1
+            page: 1,
+            currentlyPlaying: null
         };
     }
 
-    // static defaultProps = {
-    //     title: "test1",
-    //     name: "arijit",
-    // };
-
     static propTypes = {
         title: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
     };
 
     async componentDidMount() {
@@ -28,6 +24,19 @@ export default class Music extends Component {
         this.setState({ items: parsedata.albums.items });
     }
 
+    // Function to handle play/pause
+    handlePlayPause = (title, audioSrc) => {
+        const { currentlyPlaying } = this.state;
+        if (currentlyPlaying === title) {
+          this.setState({ currentlyPlaying: null });
+          this.audio.pause(); // Pause the audio
+        } else {
+          this.setState({ currentlyPlaying: title });
+          this.audio.src = audioSrc; // Set the audio source
+          this.audio.play(); // Play the audio
+        }
+    };
+
     render() {
         return (
             <div className="container">
@@ -36,7 +45,14 @@ export default class Music extends Component {
                     {this.state.items.map((element) => {
                         return (
                             <div className="col-md-3" key={element.id}>
-                                <MusicItem title={element.name} name={element.artists[0].name} imageUrl={element.images[0].url} />
+                                <MusicItem
+                                    title={element.name}
+                                    name={element.artists[0].name}
+                                    imageUrl={element.images[0].url}
+                                    onPlayPause={(title, audioSrc) => this.handlePlayPause(element.name, element.audioSrc)}
+                                    isPlaying={this.state.currentlyPlaying === element.name}
+                                    audioSrc={element.audioSrc}
+                                />
                             </div>
                         );
                     })}
