@@ -1,26 +1,19 @@
-import React, { Component } from 'react'
-import Navbar from './components/Navbar'
-import Music from './components/Music'
-import MusicItem from './components/MusicItem'
+import React, { Component } from "react";
+import Navbar from "./components/Navbar";
+import Music from "./components/Music";
 
 export class App extends Component {
   render() {
     return (
       <>
-  <Navbar/>
-
-<div className='container d-flex'>
-
-  <MusicItem title={"hello"} description={"hii"}/>
-  <MusicItem/>
-</div>
-      <div>
         <Navbar />
-        <Music />        
-      </div>
+        <div className="container d-flex">
+
+          <Music title="songs"/>
+        </div>
       </>
-)
+    );
   }
 }
 
-export default App
+export default App;
