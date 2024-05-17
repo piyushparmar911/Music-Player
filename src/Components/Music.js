@@ -23,7 +23,7 @@ export default class Music extends Component {
 
     async fetchSong()
     {
-        let url = `?q=${this.props.searchText}`;
+        let url = `https://v1.nocodeapi.com/hettom/spotify/uqfqSzFMTSxxhMck/search?q=${this.props.searchText}`;
         let data = await fetch(url);
         let parsedata = await data.json();
         this.setState({ items: parsedata.albums.items });
@@ -57,6 +57,7 @@ export default class Music extends Component {
                             <div className="col-md-3" key={element.id}>
                                 <MusicItem title={shortTitle} name={element.artists[0].name} imageUrl={element.images[0].url} />
                             </div>
+                            
                         );
                     })}
                 </div>
