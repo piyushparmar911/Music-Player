@@ -1,13 +1,31 @@
 import React, { Component } from "react";
 
 export class Navbar extends Component {
+  constructor ()
+  {
+    super();
+    this.state = {
+      serchInput: ""
+    };
+  }
+
+   handleInputChange = (event) =>
+    {
+      this.setState({searchInput: event.target.value});
+    } 
+
+    handleSearch = (event) => {
+      event.preventDefault();
+      this.props.onSearch(this.state.searchInput);
+    }
   render() {
+    
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              Music-Player
+              My-Music
             </a>
             <button
               className="navbar-toggler"
@@ -33,6 +51,10 @@ export class Navbar extends Component {
                   </a>
                 </li>
               </ul>
+                  <form className="d-flex"  onSubmit={this.handleSearch}>
+        <input className="form-control me-2" type="search"  onChange={this.handleInputChange} value={this.searchInput}  aria-label="Search"/>
+        <button className="btn btn-outline-success" type="submit"  >Search</button>
+      </form>
             </div>
           </div>
         </nav>
