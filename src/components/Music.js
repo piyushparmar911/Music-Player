@@ -23,7 +23,7 @@ export default class Music extends Component {
 
     async fetchSong()
     {
-        let url = `?q=${this.props.searchText}`;
+        let url = `https://v1.nocodeapi.com/yashsen1254/spotify/rmwPnSlYdLGbZGeb/search?q=${this.props.searchText}`;
         let data = await fetch(url);
         let parsedata = await data.json();
         this.setState({ items: parsedata.albums.items });
@@ -59,10 +59,6 @@ export default class Music extends Component {
                             </div>
                         );
                     })}
-                </div>
-                <div className="d-flex justify-content-between py-5">
-                    <button type="button" className="btn btn-danger">&larr; Previous</button>
-                    <button type="button" className="btn btn-info">Next &rarr;</button>
                 </div>
             </div>
         );
