@@ -7,10 +7,14 @@ export default class Music extends Component {
         super();
         this.state = {
             items: [],
-            page: 1,
-            currentlyPlaying: null
+            page: 1
         };
     }
+
+    // static defaultProps = {
+    //     title: "test1",
+    //     name: "arijit",
+    // };
 
     static propTypes = {
         title: PropTypes.string.isRequired,
@@ -18,24 +22,11 @@ export default class Music extends Component {
     };
 
     async componentDidMount() {
-        let url = "https://v1.nocodeapi.com/mitchelmgh/spotify/EBNYjcTvuvNIhiDn/search?q=Hot%20Hit%20Hindi";
+        let url = `https://v1.nocodeapi.com/mitchelmgh/spotify/EBNYjcTvuvNIhiDn/search?q=${this.props.searchText}`;
         let data = await fetch(url);
         let parsedata = await data.json();
         this.setState({ items: parsedata.albums.items });
     }
-
-    // Function to handle play/pause
-    handlePlayPause = (title, audioSrc) => {
-        const { currentlyPlaying } = this.state;
-        if (currentlyPlaying === title) {
-          this.setState({ currentlyPlaying: null });
-          this.audio.pause(); // Pause the audio
-        } else {
-          this.setState({ currentlyPlaying: title });
-          this.audio.src = audioSrc; // Set the audio source
-          this.audio.play(); // Play the audio
-        }
-    };
 
     render() {
         return (
@@ -45,14 +36,7 @@ export default class Music extends Component {
                     {this.state.items.map((element) => {
                         return (
                             <div className="col-md-3" key={element.id}>
-                                <MusicItem
-                                    title={element.name}
-                                    name={element.artists[0].name}
-                                    imageUrl={element.images[0].url}
-                                    onPlayPause={(title, audioSrc) => this.handlePlayPause(element.name, element.audioSrc)}
-                                    isPlaying={this.state.currentlyPlaying === element.name}
-                                    audioSrc={element.audioSrc}
-                                />
+                                <MusicItem title={element.name} name={element.artists[0].name} imageUrl={element.images[0].url} />
                             </div>
                         );
                     })}
