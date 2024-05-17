@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MusicItem from './MusicItem';
+import MusicItem from './MusiciIem';
 
 export default class Music extends Component {
     constructor() {
