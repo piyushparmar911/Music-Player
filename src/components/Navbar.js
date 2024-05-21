@@ -52,8 +52,8 @@ export class Navbar extends Component {
                 </li>
               </ul>
                   <form className="d-flex"  onSubmit={this.handleSearch}>
-        <input className="form-control me-2" type="search"  onChange={this.handleInputChange} value={this.searchInput}  aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit"  >Search</button>
+        <input className="form-control me-2 bg-dark" style={{borderColor: "#5da68d", color: "#7eccb9"}} type="search"  onChange={this.handleInputChange} value={this.searchInput}  aria-label="Search"/>
+        <button className="btn "  style={{borderColor: "#5da68d", color: "#7eccb9"}} type="submit"  >Search</button>
       </form>
             </div>
           </div>

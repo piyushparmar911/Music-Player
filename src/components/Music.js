@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MusicItem from "./MusiciIem";
+import Spinner from "./Spinner";
 
 export default class Music extends Component {
   constructor() {
@@ -8,6 +9,7 @@ export default class Music extends Component {
     this.state = {
       items: [],
       page: 1,
+      loading: false,
     };
   }
 
@@ -22,10 +24,16 @@ export default class Music extends Component {
   };
 
   async fetchSong() {
-    let url = `https://v1.nocodeapi.com/yashsen1254/spotify/rmwPnSlYdLGbZGeb/search?q=${this.props.searchText}`;
+    this.props.ProgressBar(10);
+    let url = `https://v1.nocodeapi.com/hettom/spotify/uqfqSzFMTSxxhMck/search?q=${this.props.searchText}`;
+    this.setState({ loading: true });
     let data = await fetch(url);
     let parsedata = await data.json();
-    this.setState({ items: parsedata.albums.items });
+    this.props.ProgressBar(40);
+    this.setState({ items: parsedata.albums.items ,
+      loading: false,
+  });
+    this.props.ProgressBar(100);
   }
 
   async componentDidMount() {
@@ -49,9 +57,13 @@ export default class Music extends Component {
         <div className="d-flex justify-content-between align-items-center my-4">
           <div className="flex-grow-1 text-center">
             <h1>{this.props.title}</h1>
+            {this.state.loading  && <Spinner/>}
+          </div>
+          <div>
           </div>
         </div>
 
+        
         <div className="mx-2 row">
           {this.state.items.map((element) => {
             const shortTitle = this.getfirstTwoWord(element.name);
