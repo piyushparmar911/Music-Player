@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Music from "./components/Music";
 import ProgressBar from "@ramonak/react-progress-bar";
+import "./App.css"
+
 export class App extends Component {
   constructor ()
   {
