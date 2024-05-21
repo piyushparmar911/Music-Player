@@ -50,11 +50,6 @@ export default class Music extends Component {
           <div className="flex-grow-1 text-center">
             <h1>{this.props.title}</h1>
           </div>
-          <div>
-            <button type="button" className="btn btn-outline-light">
-              Play All
-            </button>
-          </div>
         </div>
 
         <div className="mx-2 row">
