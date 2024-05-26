@@ -25,7 +25,7 @@ export class Navbar extends Component {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              My-Music
+              TuneStream
             </a>
             <button
               className="navbar-toggler"
