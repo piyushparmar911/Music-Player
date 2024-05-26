@@ -1,5 +1,5 @@
 # React Music Player
-
+![System Overview](/Screenshot.png)
 This is a simple music player built with React.
 
 ## Features
